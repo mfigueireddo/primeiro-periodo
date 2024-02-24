@@ -26,7 +26,7 @@ def valida_numero(numero):
     while eh_numero(numero) ==  False:
 
         print("\nInsira apenas números")
-        numer = input("Insira um número: ")
+        numero = input("Insira um número: ")
 
     return numero
 
