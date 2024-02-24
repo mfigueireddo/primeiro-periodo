@@ -78,46 +78,66 @@ def resultado(vitoria):
         print("\nVocê perdeu.")
         print("A palavra correta era %s." %(palavra_secreta))
 
-palavra_secreta = escolha_palavra()
+def valida_fim(escolha_fim):
 
-vitoria = 0
+    while escolha_fim not in ['1', '2']:
 
-tamanho = len(palavra_secreta)
-chances = tamanho/2
+        print("Insira uma opção válida.")
+        escolha_fim = int(input("Gostaria de jogar de novo? (1) Sim (2) Não"))
 
-letras_chutadas = []
-quantidade_chutes = 0
+    if escolha_fim == '1':
+        return False
+    
+    return True
 
-# Cria uma string com _ para representar espaços vazios na palavra
-desenho = ["_"] * tamanho
+fim = False
 
-print("Você tem %d chances!" %(chances))
-print(*desenho)
+while fim == False:
 
-while chances != 0:
-    chute = input("\nChute uma letra: ")
-    chute = chute.lower()
+    palavra_secreta = escolha_palavra()
 
-    chute = valida_chute(chute,letras_chutadas)
+    vitoria = 0
 
-    quantidade_chutes += 1
-    letras_chutadas += chute
+    tamanho = len(palavra_secreta)
+    chances = tamanho/2
 
-    # Em caso de acerto
-    if chute in palavra_secreta:
-        desenho = acerto(chute,palavra_secreta,desenho)
+    letras_chutadas = []
+    quantidade_chutes = 0
 
-    # Em caso de erro
-    else:
-        chances = erro(chances)
+    # Cria uma string com _ para representar espaços vazios na palavra
+    desenho = ["_"] * tamanho
 
-    # Revela o usuário quantas chances lhe restaram, o estado do desenho e as letras chutadas
-    informativo(chances,desenho,letras_chutadas)
+    print("Você tem %d chances!" %(chances))
+    print(*desenho)
 
-    # Condição de vitória
-    if "_" not in desenho:
-        vitoria = 1
-        break
+    while chances != 0:
+        chute = input("\nChute uma letra: ")
+        chute = chute.lower()
 
-# Imprime o resultado
-resultado(vitoria)
+        chute = valida_chute(chute,letras_chutadas)
+
+        quantidade_chutes += 1
+        letras_chutadas += chute
+
+        # Em caso de acerto
+        if chute in palavra_secreta:
+            desenho = acerto(chute,palavra_secreta,desenho)
+
+        # Em caso de erro
+        else:
+            chances = erro(chances)
+
+        # Revela o usuário quantas chances lhe restaram, o estado do desenho e as letras chutadas
+        informativo(chances,desenho,letras_chutadas)
+
+        # Condição de vitória
+        if "_" not in desenho:
+            vitoria = 1
+            break
+
+    # Imprime o resultado
+    resultado(vitoria)
+
+    escolha_fim = input("\nGostaria de jogar de novo? (1) Sim (2) Não ")
+    fim = valida_fim(escolha_fim)
+    print("")

@@ -91,29 +91,49 @@ def contas(numero_1,numero_2,operador):
 
     return resultado
 
-# Pede o primeiro número
-numero_1 = input("Insira um número: ")
-numero_1 = valida_numero(numero_1)
+def valida_fim(escolha_fim):
 
-# Pede o operador
-print("\nLista de operadores: +, -, *, /, **, //, %")
-operador = input("Insira o operador: ")
-operador = valida_operador(operador)
+    while escolha_fim not in ['1', '2']:
 
-# Pede o segundo número
-numero_2 = input("\nInsira outro número: ")
-numero_2 = valida_numero(numero_2)
+        print("Insira uma opção válida.")
+        escolha_fim = int(input("Gostaria de jogar de novo? (1) Sim (2) Não"))
 
-# Confere se não está sendo realizada uma divisão por 0
-if operador == "/" or operador == '//' or operador == '%':
-    while float(numero_2) == 0:
-        print("\nNão é possível realizar operações de divisão por 0.")
-        numero_2 = input("Insira outro número: ")
-
-# Contas
-numero_1 = float(numero_1)
-numero_2 = float(numero_2)
+    if escolha_fim == '1':
+        return False
     
-# Resultado
-resultado = contas(numero_1,numero_2,operador)
-print("\n%.2f %s %.2f = %.2f" %(numero_1,operador,numero_2,resultado))
+    return True
+
+fim = False
+
+while fim == False:
+
+    # Pede o primeiro número
+    numero_1 = input("Insira um número: ")
+    numero_1 = valida_numero(numero_1)
+
+    # Pede o operador
+    print("\nLista de operadores: +, -, *, /, **, //, %")
+    operador = input("Insira o operador: ")
+    operador = valida_operador(operador)
+
+    # Pede o segundo número
+    numero_2 = input("\nInsira outro número: ")
+    numero_2 = valida_numero(numero_2)
+
+    # Confere se não está sendo realizada uma divisão por 0
+    if operador == "/" or operador == '//' or operador == '%':
+        while float(numero_2) == 0:
+            print("\nNão é possível realizar operações de divisão por 0.")
+            numero_2 = input("Insira outro número: ")
+
+    # Contas
+    numero_1 = float(numero_1)
+    numero_2 = float(numero_2)
+        
+    # Resultado
+    resultado = contas(numero_1,numero_2,operador)
+    print("\n%.2f %s %.2f = %.2f" %(numero_1,operador,numero_2,resultado))
+
+    escolha_fim = input("\nGostaria de continuar? (1) Sim (2) Não ")
+    fim = valida_fim(escolha_fim)
+    print("")
