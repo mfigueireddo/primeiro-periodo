@@ -53,7 +53,7 @@ def valida_fim(escolha_fim):
 
     while escolha_fim not in ['1', '2']:
 
-        print("Insira uma opção válida.")
+        print("\nInsira uma opção válida.")
         escolha_fim = int(input("Gostaria de jogar de novo? (1) Sim (2) Não"))
 
     if escolha_fim == '1':

@@ -68,7 +68,7 @@ def informativo(chances,desenho,letras_chutadas):
     print("Letras chutadas: ", end="")
     print(*letras_chutadas, sep=" ")
 
-def resultado(vitoria):
+def resultado(vitoria,palavra_secreta,quantidade_chutes):
 
     if vitoria == 1:
         print("\nParabéns, você ganhou!")
@@ -82,7 +82,7 @@ def valida_fim(escolha_fim):
 
     while escolha_fim not in ['1', '2']:
 
-        print("Insira uma opção válida.")
+        print("\nInsira uma opção válida.")
         escolha_fim = int(input("Gostaria de jogar de novo? (1) Sim (2) Não"))
 
     if escolha_fim == '1':
