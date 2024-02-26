@@ -50,9 +50,28 @@ def validacao_senha(senha):
 
     return senha
 
-print("Requisitos\n- Ao menos 8 dígitos\n- Ao menos uma letra maiúscula\n- Ao menos uma letra maiúscula\n- Ao menos um número")
+def valida_fim(escolha_fim):
 
-input_usuario = input("Insira sua senha: ")
-input_usuario = validacao_senha(input_usuario)
+    while escolha_fim not in ['1', '2']:
 
-print("\nSua senha corresponde aos requisitos.")
+        print("\nInsira uma opção válida.")
+        escolha_fim = int(input("Gostaria de jogar de novo? (1) Sim (2) Não"))
+
+    if escolha_fim == '1':
+        return False
+    
+    return True
+
+fim = 0
+
+while fim == 0:
+
+    print("Requisitos\n- Ao menos 8 dígitos\n- Ao menos uma letra maiúscula\n- Ao menos uma letra maiúscula\n- Ao menos um número")
+
+    input_usuario = input("Insira sua senha: ")
+    input_usuario = validacao_senha(input_usuario)
+
+    print("\nSua senha corresponde aos requisitos.")
+    escolha_fim = input("\nGostaria de usar novamente? (1) Sim (2) Não ")
+    fim = valida_fim(escolha_fim)
+    print("")
